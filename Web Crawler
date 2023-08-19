@@ -1,0 +1,24 @@
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+
+public class WebCrawler {
+    public static void main(String[] args) {
+        String url = "https://example.com"; // Replace with the URL of the website you want to crawl
+        
+        try {
+            Document document = Jsoup.connect(url).get();
+            
+            Elements titles = document.select("h1, h2, h3"); // Change this selector based on the structure of the website
+            
+            for (Element title : titles) {
+                System.out.println("Title: " + title.text());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
